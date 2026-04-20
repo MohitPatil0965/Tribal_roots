@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg-creme: #FDF8F2;
+  --bg-textured: #F9F4EB;
+  --terracotta: #B5422D;
+  --terracotta-light: #D46A55;
+  --indigo: #2B3D5D;
+  --saffron: #F5A623;
+  --text-dark: #2C2C2C;
+  --text-muted: #6B7280;
+  --border-organic: rgba(181, 66, 45, 0.2);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-image: url("/assets/paper_bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: var(--text-dark);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Scrapbook utility */
+.scrapbook-card {
+  background: white;
+  padding: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  border-radius: 4px;
+  transition: transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.scrapbook-card:hover {
+  transform: rotate(-1deg) translateY(-5px);
+}
+
+.btn-artisanal {
+  background: var(--terracotta);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 12px rgba(181, 66, 45, 0.3);
+}
+
+.btn-artisanal:hover {
+  background: var(--terracotta-light);
+  transform: scale(1.05);
+}
+
+.btn-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--terracotta);
+  color: var(--terracotta);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-circle:hover {
+  background: var(--terracotta);
+  color: white;
+}
+
+.input-artisanal {
+  background: white;
+  border: 1px solid var(--border-organic);
+  padding: 14px 18px;
+  border-radius: 12px;
+  color: var(--text-dark);
+  outline: none;
+  width: 100%;
+}
+
+.input-artisanal:focus {
+  border-color: var(--terracotta);
+  box-shadow: 0 0 0 4px rgba(181, 66, 45, 0.1);
+}
+
+.home-container {
+  width: 100%;
+  min-height: 100vh;
+}
