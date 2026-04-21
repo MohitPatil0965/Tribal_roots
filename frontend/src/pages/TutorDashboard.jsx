@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { BookOpen, Users, Plus, Globe, IndianRupee, Clock, BarChart2, CheckCircle } from "lucide-react";
 
+// ✅ ADD THIS LINE (IMPORTANT)
+const API_URL = import.meta.env.VITE_API_URL;
+
 const TutorDashboard = () => {
   const username = localStorage.getItem("username");
   const [stats, setStats] = useState({ totalCourses: 0, totalEnrollments: 0 });
@@ -24,8 +27,8 @@ const TutorDashboard = () => {
     const headers = { Authorization: `Bearer ${token}` };
     try {
       const [statsRes, coursesRes] = await Promise.all([
-        axios.get("http://localhost:8080/api/tutor/stats", { headers }),
-        axios.get("http://localhost:8080/api/tutor/courses/my", { headers })
+        axios.get(`${API_URL}/api/tutor/stats`, { headers }),
+        axios.get(`${API_URL}/api/tutor/courses/my`, { headers })
       ]);
       setStats(statsRes.data);
       setCourses(coursesRes.data);

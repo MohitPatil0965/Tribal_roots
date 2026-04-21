@@ -3,6 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ArrowRight, Shield, Heart, ShoppingBag, Map, X, BookOpen, Clock, Globe } from "lucide-react";
 
+// ✅ ADD THIS LINE (IMPORTANT)
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Home = () => {
   const [artifacts, setArtifacts] = useState([]);
   const [tribalInfo, setTribalInfo] = useState([]);
@@ -20,9 +23,9 @@ const Home = () => {
   const fetchData = async () => {
     try {
       const [artRes, tribalRes, courseRes] = await Promise.all([
-        axios.get("http://localhost:8080/api/artifacts/all"),
-        axios.get("http://localhost:8080/api/tribes/all"),
-        axios.get("http://localhost:8080/api/courses/all")
+        axios.get(`${API_URL}/api/artifacts/all`),
+        axios.get(`${API_URL}/api/tribes/all`),
+        axios.get(`${API_URL}/api/courses/all`)
       ]);
       setArtifacts(artRes.data);
       setTribalInfo(tribalRes.data);

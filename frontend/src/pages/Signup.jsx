@@ -3,6 +3,9 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { UserPlus, ShieldCheck, ShoppingBag, Database, ArrowRight } from "lucide-react";
 
+// ✅ ADD THIS LINE (IMPORTANT)
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Signup = () => {
   const [formData, setFormData] = useState({ 
     username: "", 
@@ -14,7 +17,7 @@ const Signup = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8080/api/auth/register", formData);
+      const res = await axios.post(`${API_URL}/api/auth/register`, formData);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("username", res.data.username);
       localStorage.setItem("role", res.data.role);

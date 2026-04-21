@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Compass, ShoppingBag, History, Package, Clock, CheckCircle, Map, BookOpen, Globe } from "lucide-react";
 
+// ✅ ADD THIS LINE (IMPORTANT)
+const API_URL = import.meta.env.VITE_API_URL;
+
 const UserDashboard = () => {
   const username = localStorage.getItem("username");
   const [orders, setOrders] = useState([]);
@@ -18,9 +21,9 @@ const UserDashboard = () => {
     const headers = { Authorization: `Bearer ${token}` };
     try {
       const [orderRes, tribeRes, enrollRes] = await Promise.all([
-        axios.get("http://localhost:8080/api/purchase/my-orders", { headers }),
-        axios.get("http://localhost:8080/api/tribes/all"),
-        axios.get("http://localhost:8080/api/courses/my-enrollments", { headers })
+        axios.get(`${API_URL}/api/purchase/my-orders`, { headers }),
+        axios.get(`${API_URL}/api/tribes/all`),
+        axios.get(`${API_URL}/api/courses/my-enrollments`, { headers })
       ]);
       setOrders(orderRes.data.reverse());
       setTribes(tribeRes.data);

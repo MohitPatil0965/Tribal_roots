@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Palette, Share2, Plus, PenTool, IndianRupee, Image as ImageIcon, CheckCircle, Map } from "lucide-react";
 
+// ✅ ADD THIS LINE (IMPORTANT)
+const API_URL = import.meta.env.VITE_API_URL;
+
 const ArtistDashboard = () => {
   const username = localStorage.getItem("username");
   const [myArtifacts, setMyArtifacts] = useState([]);
@@ -20,7 +23,7 @@ const ArtistDashboard = () => {
     
     // Fetch Tribes separately so it's not blocked by auth-protected calls
     try {
-      const tribeRes = await axios.get("http://localhost:8080/api/tribes/all");
+      const tribeRes = await axios.get(`${API_URL}/api/tribes/all`);
       console.log("Tribes fetched successfully:", tribeRes.data);
       setTribes(tribeRes.data);
     } catch (error) {
@@ -30,8 +33,8 @@ const ArtistDashboard = () => {
     // Fetch stats and sales
     try {
       const [artRes, salesRes] = await Promise.all([
-        axios.get("http://localhost:8080/api/artifacts/my", { headers }),
-        axios.get("http://localhost:8080/api/purchase/artist-sales", { headers })
+        axios.get(`${API_URL}/api/artifacts/my`, { headers }),
+        axios.get(`${API_URL}/api/purchase/artist-sales`, { headers })
       ]);
       setMyArtifacts(artRes.data);
       setSales(salesRes.data);

@@ -3,6 +3,9 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import { CreditCard, Smartphone, Building2, CheckCircle, ArrowLeft, Lock, IndianRupee } from "lucide-react";
 
+// ✅ ADD THIS LINE (IMPORTANT)
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Payment = () => {
   const { artifactId } = useParams();
   const navigate = useNavigate();
@@ -20,7 +23,7 @@ const Payment = () => {
   });
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/artifacts/all")
+    axios.get(`${API_URL}/api/artifacts/all`)
       .then(res => {
         const found = res.data.find(a => String(a.id) === String(artifactId));
         setArtifact(found);
@@ -33,7 +36,7 @@ const Payment = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      await axios.post(`http://localhost:8080/api/purchase/buy/${artifactId}`, {}, {
+      await axios.post(`${API_URL}/api/purchase/buy/${artifactId}`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setPaid(true);

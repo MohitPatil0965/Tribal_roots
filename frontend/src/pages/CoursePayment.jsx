@@ -3,6 +3,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { CreditCard, Smartphone, Building2, CheckCircle, ArrowLeft, Lock, IndianRupee, Globe, Clock, BarChart2 } from "lucide-react";
 
+// ✅ ADD THIS LINE (IMPORTANT)
+const API_URL = import.meta.env.VITE_API_URL;
+
 const CoursePayment = () => {
   const { courseId } = useParams();
   const navigate = useNavigate();
@@ -13,7 +16,7 @@ const CoursePayment = () => {
   const [form, setForm] = useState({ cardNumber: "", cardName: "", expiry: "", cvv: "", upi: "", netBankingBank: "" });
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/courses/all")
+    axios.get(`${API_URL}/api/courses/all`)
       .then(res => {
         const found = res.data.find(c => String(c.id) === String(courseId));
         setCourse(found);
@@ -26,7 +29,7 @@ const CoursePayment = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      await axios.post(`http://localhost:8080/api/courses/enroll/${courseId}`, {}, {
+      await axios.post(`${API_URL}/api/courses/enroll/${courseId}`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setPaid(true);
